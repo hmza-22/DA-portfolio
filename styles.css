@@ -808,6 +808,25 @@ nav a:hover {
     box-shadow: 0 0 12px rgba(0,212,212,0.5) !important;
   }
 
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .modal-container,
+  .modal-content,
+  .project-modal,
+  .modal-box,
+  .modal-inner {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    min-width: unset !important;
+    margin: 10px auto !important;
+    padding: 20px 16px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
 }
 
 .project-tag {
