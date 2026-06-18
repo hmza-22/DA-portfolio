@@ -26,6 +26,51 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+  // Certificates data and rendering
+  const certificates = [
+    {
+      image: "assets/projects/ai-skills-fest-2026.png",
+      title: "AI Skills Fest 2026",
+      platform: "Credly",
+      verifyLink: "https://www.credly.com/badges/531efb06-7593-4b9c-a588-e103d687f86c"
+    },
+    {
+      image: "assets/projects/Screenshot 2026-06-18 121126.png",
+      title: "Certificate (CertX)",
+      platform: "CertX",
+      verifyLink: "https://certx.in/certificate/0270772f-3809-4400-b29b-1e1c61cd0997485849"
+    }
+    // easy to add more objects here later
+  ];
+
+  function renderCertificates() {
+    const grid = document.getElementById('certifications-grid');
+    if (!grid) return;
+    certificates.forEach(cert => {
+      const card = document.createElement(cert.verifyLink ? 'a' : 'div');
+      if (cert.verifyLink) {
+        card.setAttribute('href', cert.verifyLink);
+        card.setAttribute('target', '_blank');
+        card.setAttribute('rel', 'noreferrer noopener');
+      }
+      card.className = 'cert-card fade-up';
+      card.innerHTML = `
+        <div class="cert-image-wrap">
+          <img src="${cert.image}" alt="${cert.title}" />
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">${cert.title}</h3>
+          <p class="cert-platform">${cert.platform}</p>
+        </div>
+        ${cert.verifyLink ? '<span class="cert-verify">Verify ✓</span>' : ''}
+      `;
+      grid.appendChild(card);
+      observer.observe(card);
+    });
+  }
+
+  renderCertificates();
+
   const modalOverlay = document.getElementById('projectModal');
   const modalClose = document.getElementById('modalClose');
   const projectCard = document.querySelector('.project-card');
