@@ -39,6 +39,12 @@ window.addEventListener('DOMContentLoaded', () => {
       title: "Certificate (CertX)",
       platform: "CertX",
       verifyLink: "https://certx.in/certificate/0270772f-3809-4400-b29b-1e1c61cd0997485849"
+    },
+    {
+      image: "assets/projects/ai-skills-passport.png",
+      title: "EY AI Skills Passport",
+      platform: "EY (Ernst & Young)",
+      verifyLink: "https://www.credly.com/badges/8448fd7c-c9dd-40f8-9dda-edebfd9449b4/linked_in_profile"
     }
     // easy to add more objects here later
   ];
