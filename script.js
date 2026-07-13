@@ -41,8 +41,7 @@ const projects = [
     title: 'Daikibo Telemetry & Workplace Equality Analysis',
     subtitle: 'Deloitte Data Analysis Job Simulation — Forage',
     mainImage: 'assets/projects/daikibo-main.png',
-    task1Image: 'assets/projects/daikibo-task1.png',
-    task2Image: 'assets/projects/daikibo-task2.png',
+
     tags: ['Tableau', 'Excel', 'Data Analysis', 'Forage'],
     description: 'Built an interactive Tableau dashboard analyzing factory telemetry data and developed nested Excel formulas to classify gender pay equality scores across factories and job roles.',
     problem: 'Daikibo Industrials needed answers to two critical business problems: identifying which factory location had the highest equipment downtime and which machines broke most often there, and investigating internal complaints about gender pay inequality across all company locations and job roles.',
@@ -264,7 +263,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (projectSection) {
     projects.slice(1).forEach(project => {
       const card = document.createElement('div');
-      card.className = 'project-card fade-up delay-1';
+      card.className = 'project-card';
       card.setAttribute('data-project-id', project.id);
       card.innerHTML = `
         <div class="project-image">
@@ -287,6 +286,10 @@ window.addEventListener('DOMContentLoaded', () => {
       });
       card.querySelector('.project-open').addEventListener('click', () => openModal(project));
       projectSection.appendChild(card);
+      card.classList.add('visible');
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+      observer.observe(card);
     });
   }
 
