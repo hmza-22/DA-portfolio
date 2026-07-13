@@ -113,6 +113,12 @@ window.addEventListener('DOMContentLoaded', () => {
       title: "EY AI Skills Passport",
       platform: "EY (Ernst & Young)",
       verifyLink: "https://www.credly.com/badges/8448fd7c-c9dd-40f8-9dda-edebfd9449b4/linked_in_profile"
+    },
+    {
+      image: "assets/certificates/deloitte_simulation certificate.png",
+      title: "Data Analytics Job Simulation",
+      platform: "Deloitte x Forage",
+      verifyLink: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_68cd29d394597f8587282ea7_1783928913255_completion_certificate.pdf"
     }
     // easy to add more objects here later
   ];
