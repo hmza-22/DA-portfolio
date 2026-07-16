@@ -77,6 +77,37 @@ const projects = [
       'Multiple factories flagged as Highly Discriminative at senior levels'
     ],
     linkedinUrl: 'https://www.linkedin.com/in/mohammad-hamza-data-science/details/projects/'
+  },
+  {
+    id: 3,
+    title: 'SaaS Customer Churn Analysis',
+    subtitle: 'Independent Project — Telco Dataset',
+    mainImage: 'assets/projects/SAAS dashboard.png',
+    tags: ['Python', 'Power BI', 'Excel', 'Pandas'],
+    description: 'Analyzed churn behavior of 7,048 telecom customers using Python and Power BI to uncover retention insights and validate business hypotheses.',
+    aim: 'To identify the key drivers of customer churn in a SaaS telecom company and provide actionable retention strategies by analyzing contract types, tenure patterns, and monthly charge behavior across 7,048 customers.',
+    hypothesis: [
+      'H1: Customers on month-to-month contracts churn more than those on annual contracts',
+      'H2: Customers with tenure less than 12 months have a significantly higher churn rate',
+      'H3: Customers paying higher monthly charges are more likely to churn'
+    ],
+    whatIDid: [
+      'Collected and cleaned Telco customer dataset (7,048 records) using Excel and Python (Pandas)',
+      'Performed Exploratory Data Analysis (EDA) using Python to identify churn patterns',
+      'Engineered tenure cohort groups and charge groups for segmented analysis',
+      'Built an interactive Power BI dashboard visualizing churn by contract type, tenure cohort, and monthly charges',
+      'Validated all 3 business hypotheses against real data'
+    ],
+    keyFindings: [
+      'Overall churn rate: 26.58% across 7,048 customers',
+      'H1 CONFIRMED: Month-to-month contracts had 42.7% churn vs only 2.8% for two-year contracts',
+      'H2 CONFIRMED: Customers with 0-12 months tenure churned at 47.7% — nearly 5x higher than long-term customers',
+      'H3 PARTIALLY CONFIRMED: High charge group (65-95) showed highest churn at 36%, but very high (95+) was slightly lower at 32.3%',
+      '799 churned customers paid over $1,000 — highest revenue loss segment',
+      'Average tenure of churned customers: ~18 months'
+    ],
+    githubUrl: 'https://github.com/hmza-22/SaaS-churn-analysis-independent-project',
+    linkedinUrl: 'https://www.linkedin.com/in/mohammad-hamza-data-science/details/projects/'
   }
 ];
 
@@ -176,6 +207,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (!modalCopy) return;
 
+    const hasAimAndHypothesis = Boolean(project.aim && Array.isArray(project.hypothesis) && project.hypothesis.length);
+
     const taskMarkup = Array.isArray(project.tasks) && project.tasks.length
       ? project.tasks.map((task, index) => `
           <section class="modal-section">
@@ -193,7 +226,7 @@ window.addEventListener('DOMContentLoaded', () => {
           <section class="modal-section">
             <p class="modal-section-label">What I Did</p>
             <ul class="modal-list">
-              ${project.whatIDid.map(item => `<li>${item}</li>`).join('')}
+              ${project.whatIDid ? project.whatIDid.map(item => `<li>${item}</li>`).join('') : ''}
             </ul>
           </section>
         `;
@@ -219,6 +252,49 @@ window.addEventListener('DOMContentLoaded', () => {
       `);
     }
 
+    if (hasAimAndHypothesis) {
+      modalCopy.innerHTML = `
+        <div>
+          <h2 id="modalTitle">${project.title}</h2>
+          <p style="margin: 0.45rem 0 0; color: #9bb0cf; font-style: italic; font-size: 0.95rem; font-family: 'Manrope', sans-serif;">${project.subtitle}</p>
+        </div>
+        <div class="modal-tags">
+          ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+        </div>
+        <section class="modal-section">
+          <p class="modal-section-label">Project Aim</p>
+          <p style="margin: 0; color: #c8d0e0; font-family: 'Manrope', sans-serif; line-height: 1.8;">${project.aim}</p>
+        </section>
+        <section class="modal-section">
+          <p class="modal-section-label">Hypothesis</p>
+          <div style="display: grid; gap: 10px;">
+            ${project.hypothesis.map(item => `<p style="margin: 0; color: #c8d0e0; font-family: 'Manrope', sans-serif; line-height: 1.8;">${item}</p>`).join('')}
+          </div>
+        </section>
+        <section class="modal-section">
+          <p class="modal-section-label">What I Did</p>
+          <ul class="modal-list">
+            ${project.whatIDid.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </section>
+        <section class="modal-section">
+          <p class="modal-section-label">Key Findings</p>
+          <ul class="modal-list">
+            ${project.keyFindings.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </section>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
+          <a class="btn btn-outline btn-modal" href="${project.githubUrl}" target="_blank" rel="noreferrer">
+            View on GitHub <span class="btn-arrow">→</span>
+          </a>
+          ${project.linkedinUrl ? `<a class="btn btn-outline btn-modal" href="${project.linkedinUrl}" target="_blank" rel="noreferrer">
+            View on LinkedIn <span class="btn-arrow">↗</span>
+          </a>` : ''}
+        </div>
+      `;
+      return;
+    }
+
     modalCopy.innerHTML = `
       <p class="modal-section-label">Project</p>
       <h2 id="modalTitle">${project.title}</h2>
@@ -236,9 +312,9 @@ window.addEventListener('DOMContentLoaded', () => {
           ${project.keyFindings.map(item => `<li>${item}</li>`).join('')}
         </ul>
       </section>
-      <a class="btn btn-outline btn-modal" href="${project.linkedinUrl}" target="_blank" rel="noreferrer">
+      ${project.linkedinUrl ? `<a class="btn btn-outline btn-modal" href="${project.linkedinUrl}" target="_blank" rel="noreferrer">
         View on LinkedIn <span class="btn-arrow">↗</span>
-      </a>
+      </a>` : ''}
       ${extraSections.join('')}
     `;
   }
