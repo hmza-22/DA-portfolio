@@ -430,32 +430,60 @@ nav a:hover {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
   width: 100%;
+  align-items: start;
+}
+
+.projects > .section-intro {
+  grid-column: 1 / -1;
+  max-width: 100%;
 }
 
 .project-card {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
   margin-top: 0;
-  padding: 28px;
-  border-radius: 32px;
-  background: rgba(15, 22, 36, 0.9);
-  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  background: #0d1526;
+  border: 1px solid rgba(0, 212, 212, 0.2);
+  overflow: hidden;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 1px rgba(0, 212, 212, 0.18), 0 0 26px rgba(0, 212, 212, 0.18);
 }
 
 .project-image {
-  border-radius: 28px;
+  width: 100%;
+  height: 200px;
   overflow: hidden;
   background: rgba(255,255,255,0.04);
+}
+
+.project-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.project-details {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 0;
 }
 
 .project-tags {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .modal-overlay {
@@ -919,10 +947,14 @@ nav a:hover {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
   margin-top: 22px;
 }
 
 .cert-card {
+  width: 100%;
+  box-sizing: border-box;
   background: #0d1526;
   border: 1px solid rgba(0, 212, 212, 0.16);
   border-radius: 14px;
@@ -981,94 +1013,34 @@ nav a:hover {
   font-weight: 700;
 }
 
-@media (min-width: 769px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    width: 100%;
-  }
-
-  .cert-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    width: 100%;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    width: 100%;
-  }
-
-  .cert-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+@media (max-width: 768px) {
+  .projects-grid,
+  .projects-container,
+  #projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 }
 
 @media (max-width: 480px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    width: 100%;
-  }
-
   .project-card {
-    padding: 12px;
-  }
-
-  .project-image {
-    height: 140px;
-  }
-
-  .project-image img {
-    height: 140px;
-    object-fit: cover;
-  }
-
-  .project-details h3 {
-    font-size: 15px;
-  }
-
-  .project-details p {
-    font-size: 12px;
-  }
-
-  .project-tag {
-    font-size: 10px;
-    padding: 2px 6px;
-  }
-
-  .project-details .btn {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-
-  .cert-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    border-radius: 10px;
   }
 
   .cert-card {
-    padding: 8px;
+    border-radius: 10px;
   }
 
   .cert-image-wrap {
-    height: 90px;
-  }
-
-  .cert-image-wrap img {
-    object-fit: contain;
+    height: 70px;
   }
 
   .cert-title {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .cert-platform {
-    font-size: 9px;
+    font-size: 8px;
   }
 
   .cert-verify {
