@@ -425,11 +425,18 @@ nav a:hover {
   border-left: 4px solid rgba(64, 214, 255, 0.35);
 }
 
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
 .project-card {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 0;
   padding: 28px;
   border-radius: 32px;
   background: rgba(15, 22, 36, 0.9);
@@ -909,8 +916,9 @@ nav a:hover {
 /* Certifications grid and cards */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
   margin-top: 22px;
 }
 
@@ -973,16 +981,101 @@ nav a:hover {
   font-weight: 700;
 }
 
-@media (max-width: 1024px) {
-  .cert-grid {
+@media (min-width: 769px) {
+  .projects {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
   }
 }
 
-@media (max-width: 680px) {
-  .cert-grid {
-    grid-template-columns: 1fr;
+@media (min-width: 481px) and (max-width: 768px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
   }
+
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+
+  .project-card {
+    padding: 12px;
+  }
+
+  .project-image {
+    height: 140px;
+  }
+
+  .project-image img {
+    height: 140px;
+    object-fit: cover;
+  }
+
+  .project-details h3 {
+    font-size: 15px;
+  }
+
+  .project-details p {
+    font-size: 12px;
+  }
+
+  .project-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .project-details .btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .cert-card {
+    padding: 8px;
+  }
+
+  .cert-image-wrap {
+    height: 90px;
+  }
+
+  .cert-image-wrap img {
+    object-fit: contain;
+  }
+
+  .cert-title {
+    font-size: 10px;
+  }
+
+  .cert-platform {
+    font-size: 9px;
+  }
+
+  .cert-verify {
+    font-size: 8px;
+    padding: 1px 4px;
+  }
+
   .btn-outline-hero {
     width: 100%;
     text-align: center;
@@ -1036,10 +1129,6 @@ nav a:hover {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
-  }
-
-  .project-card {
-    grid-template-columns: 1fr;
   }
 }
 
