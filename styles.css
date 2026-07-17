@@ -1017,6 +1017,49 @@ nav a:hover {
   font-weight: 700;
 }
 
+@media (min-width: 769px) {
+  .cert-grid,
+  .certificates-grid,
+  #certifications-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .cert-card,
+  .certificate-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .cert-card img,
+  .certificate-card img,
+  .cert-image-wrap img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: #0a0f1e !important;
+    border-radius: 8px 8px 0 0 !important;
+    display: block !important;
+  }
+
+  #certifications,
+  .certifications-section {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .projects {
     display: block !important;
