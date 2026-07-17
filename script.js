@@ -189,6 +189,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const modalTags = document.querySelector('.modal-tags');
   const modalCopy = document.querySelector('.modal-copy');
   const projectSection = document.querySelector('.projects');
+  const projectsCarousel = document.getElementById('projects-carousel');
+  const projectsDots = document.getElementById('projects-dots');
   const defaultProjectCard = document.querySelector('.projects .project-card');
 
   function renderModalContent(project) {
@@ -342,7 +344,34 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (projectSection) {
+  function renderProjectDots() {
+    if (!projectsCarousel || !projectsDots) return;
+
+    const cards = Array.from(projectsCarousel.querySelectorAll('.project-card'));
+    projectsDots.innerHTML = cards.map((_, index) => `
+      <button class="project-dot" type="button" aria-label="Go to project ${index + 1}" data-index="${index}"></button>
+    `).join('');
+
+    const dots = projectsDots.querySelectorAll('.project-dot');
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        cards[index]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    });
+
+    const updateActiveDot = () => {
+      const carouselLeft = projectsCarousel.scrollLeft;
+      const cardWidth = cards[0]?.getBoundingClientRect().width || 0;
+      const activeIndex = Math.round(carouselLeft / Math.max(cardWidth + 16, 1));
+      dots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+    };
+
+    projectsCarousel.addEventListener('scroll', updateActiveDot, { passive: true });
+    window.addEventListener('resize', updateActiveDot);
+    updateActiveDot();
+  }
+
+  if (projectSection && projectsCarousel) {
     projects.slice(1).forEach(project => {
       const card = document.createElement('div');
       card.className = 'project-card';
@@ -367,12 +396,14 @@ window.addEventListener('DOMContentLoaded', () => {
         openModal(project);
       });
       card.querySelector('.project-open').addEventListener('click', () => openModal(project));
-      projectSection.appendChild(card);
+      projectsCarousel.appendChild(card);
       card.classList.add('visible');
       card.style.opacity = '1';
       card.style.transform = 'translateY(0)';
       observer.observe(card);
     });
+
+    renderProjectDots();
   }
 
   if (modalClose) {

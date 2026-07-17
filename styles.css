@@ -438,6 +438,10 @@ nav a:hover {
   max-width: 100%;
 }
 
+.projects > .projects-carousel {
+  display: contents;
+}
+
 .project-card {
   display: flex;
   flex-direction: column;
@@ -1014,11 +1018,85 @@ nav a:hover {
 }
 
 @media (max-width: 768px) {
-  .projects-grid,
-  .projects-container,
-  #projects-grid {
-    grid-template-columns: 1fr !important;
+  .projects {
+    display: block !important;
+  }
+
+  .projects > .section-intro {
+    margin-bottom: 18px;
+  }
+
+  .projects > .projects-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
     gap: 16px !important;
+    padding: 8px 4px 12px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    scroll-padding: 0 12px !important;
+  }
+
+  .projects > .projects-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .projects > .projects-carousel .project-card {
+    flex: 0 0 85vw !important;
+    max-width: 85vw !important;
+    min-width: 85vw !important;
+    scroll-snap-align: center !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    background: #0d1526 !important;
+    border: 1px solid rgba(0, 212, 212, 0.2) !important;
+    box-sizing: border-box !important;
+  }
+
+  .projects > .projects-carousel .project-card .project-image {
+    height: 220px !important;
+    overflow: hidden;
+  }
+
+  .projects > .projects-carousel .project-card img {
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 16px 16px 0 0 !important;
+    background: #08101d !important;
+  }
+
+  .projects > .projects-carousel .project-card .project-details {
+    padding: 16px !important;
+  }
+
+  .projects-dots {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .project-dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.28);
+    padding: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .project-dot.active {
+    transform: scale(1.2);
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0, 212, 212, 0.16);
   }
 }
 
